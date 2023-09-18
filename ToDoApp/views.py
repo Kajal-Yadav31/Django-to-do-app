@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
+from .forms import WorkForm
+from .models import Work
 # Create your views here.
 def home(request):
     return render(request,'ToDoApp/home.html')
@@ -42,5 +44,20 @@ def logoutuser(request):
         return redirect('home')
         
 
+def createtodo(request):
+    if request.method == 'GET':
+        return render(request, 'ToDoApp/createtodo.html', {'form': WorkForm()})
+    else:
+        try:
+            form = WorkForm(request.POST)
+            newtodo = form.save(commit=False)
+            newtodo.user = request.user
+            newtodo.save()
+            return redirect('currentuser')
+        except ValueError:
+            return render(request, 'ToDoApp/createtodo.html', {'form': WorkForm(), 'error':'Bad data passed in, Try Again:('})
+        
+
 def currentuser(request):
-    return render(request, 'ToDoApp/currentuser.html')
+    todos = Work.objects.filter(user=request.user, completed__isnull=True)
+    return render(request, 'ToDoApp/currentuser.html', {'todos':todos})

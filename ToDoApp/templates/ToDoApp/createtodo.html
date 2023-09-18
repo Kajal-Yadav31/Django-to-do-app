@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Sign Up</h1>
+<h1>Creating ToDo</h1>
 
 <h2>{{ error }}</h2>
 
@@ -10,11 +10,7 @@
     {% csrf_token %}
        {{ form.as_p }}
     
-       <button type="submit">Sign Up</button>
-
-       <h5>already have an account? LogIn</h5>
-       <a href="{% url 'loginuser' %}"> Log In </a>
-
+       <button type="submit">Log In</button>
 </form>
 
 {% endblock %}
