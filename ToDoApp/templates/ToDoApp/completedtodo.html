@@ -1,13 +1,14 @@
 {% extends 'ToDoApp/base.html' %}
 
 {% block content %}
-<h1> Current Todos </h1>
+<h1> Completed </h1>
 
 <ul>
     {% for todo in todos %}
     <li>
         <a href="{% url 'viewtodo' todo.id %}">
         {% if todo.important %}<b>{% endif %}{{ todo.title }}{% if todo.important %}</b>{% endif %}{% if todo.journal %} - {{ todo.journal }}{% endif %}
+        {{ todo.completed|date:'M j Y H:i' }}
         </a>
     </li>
     {% endfor %}

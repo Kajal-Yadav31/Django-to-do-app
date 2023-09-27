@@ -2,13 +2,17 @@
 
 Logged In as {{ user.username }}
 
-    <form action="{% url 'logoutuser' %}" method="POST">
-        {% csrf_token %}
+<a href="{% url 'createtodo' %}">Create</a>
+<a href="{% url 'currentuser' %}">Current</a>
+<a href="{% url 'completedtodo' %}">Completed</a>
+
+<form action="{% url 'logoutuser' %}" method="POST">
+    {% csrf_token %}
     <button type="submit">Logout</button>
-    </form>
+</form>
 
 {% else %}
-    <a href=""{% url 'signupuser' %}>Sign In</a>
+    <a href="{% url 'signupuser' %}">Sign In</a>
     <a href="{% url 'loginuser' %}"> Log In </a>
 
 {% endif %}
