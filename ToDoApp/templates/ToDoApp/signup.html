@@ -1,4 +1,11 @@
-{% extends 'ToDoApp/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    signup
+{% endblock %}
+
+
 
 {% block content %}
 
@@ -77,6 +84,15 @@
 				<div class="d-flex justify-content-center">
 					<h3 id="form-title">REGISTER ACCOUNT</h3>
 				</div>
+
+				<div class="row justify-content-center mt-5">
+					<div class="col-md-5">
+						{% if error %}
+							<div class="alert alert-danger" role="alert">
+								{{ error }}
+							</div>
+						{% endif %}
+
 				<div class="d-flex justify-content-center form_container">
 
 					<form method="POST" action="">
@@ -111,7 +127,8 @@
 				   		</div>
 					</form>
 				</div>
-                {{ error }}
+			</div>
+		</div>
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
 						Already have an account? <a href="{% url 'loginuser' %}" class="ml-2">Login</a>

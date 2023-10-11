@@ -1,7 +1,28 @@
-{% extends 'ToDoApp/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
+    Completed
+{% block title %}
+    
+{% endblock %}
+
 
 {% block content %}
-<h1> Completed </h1>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            <h1>Completed Todos</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            <div class="list-group">
+                {% for todo in todos %}
+                    <a href="{% url 'viewtodo' todo.id %}" class="list-group-item list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}"><b>{{ todo.title }}</b> - Completed {{ todo.completed|date:'M j Y H:i' }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% comment %} <h1> Completed </h1>
 
 <ul>
     {% for todo in todos %}
@@ -12,6 +33,5 @@
         </a>
     </li>
     {% endfor %}
-</ul>
+</ul> {% endcomment %}
 
-{% endblock %}

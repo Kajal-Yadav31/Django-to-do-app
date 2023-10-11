@@ -1,10 +1,29 @@
-{% extends 'ToDoApp/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    ToDo Website
+{% endblock %}
+
+
+
 
 {% block content %}
-<h1> Main Page </h1>
+<div class="position-absolute top-50 start-50 translate-middle" style="">
+<div>
+<h1 style="font-weight:bold; color:#00203FFF;margin-bottom:2rem; font-size:3.4rem;"> Your Ultimate Task Manager! </h1>
+</div>
+<div>
+<h2 style="font-size:20px; font-weight:bold; text-align:center;">Life can get chaotic, and staying on top of tasks can be a challenge. Our todo website is designed to help you regain control of your schedule and tasks. Say goodbye to missed deadlines and hello to a more organized and productive life. Try our todo website today and experience the difference.</h2>
+<br>
+</div>
 
-<h2>Want to Create ToDo!</h2>
-<a href="{% url 'createtodo' %}"> Create ToDo </a>
+<div  style="text-align:center;">
+    <a href="{% url "currentuser"  %}" class="btn btn float-center ms-3 me-3" style="background-color:#00203FFF; color:white;"> start</a>
+</div>
+</div>
+
 
 
 {% endblock %}
+

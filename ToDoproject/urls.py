@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from ToDoApp import views
+from django.contrib.auth import views as authentication_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,7 +26,9 @@ urlpatterns = [
     # Authentication
     path('SignUp/', views.signupuser, name="signupuser"),
     path('LogIn/', views.loginuser, name="loginuser"),
-    path('LogOut/', views.logoutuser, name="logoutuser"),
+    # path('LogOut/', views.logoutuser, name="logoutuser"),
+    path('LogOut/', authentication_views.LogoutView.as_view(template_name='ToDoApp/logout.html'), name='logoutuser'),
+
 
     #todo
     path('home/', views.home, name='home'),

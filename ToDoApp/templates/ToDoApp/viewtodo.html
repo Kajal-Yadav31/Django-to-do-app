@@ -1,24 +1,53 @@
-{% extends 'ToDoApp/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Viewtodo
+{% endblock %}
+
+
 
 {% block content %}
-<h1> View To DO</h1>
-
-{{ todo.title }}
-
-<form method="POST">
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <h2>New Todo</h2>
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" class="form-control" id="title" value="{{ todo.title }}" required>
+            </div>
+            <div class="form-group">
+                <label for="journal">Memo</label>
+                <textarea name="memo" rows="5" class="form-control" id="journal" >{{ todo.journal }}</textarea>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" name="important" class="form-check-input" id="important" {% if todo.important %}checked{% endif %}>
+                <label class="form-check-label" for="important">Important</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-success" onclick="$('#complete').click()"><a href="{% url 'completetodo' todo.id %}">Complete</a></button>
+            <button type="button" class="btn btn-danger" onclick="$('#delete').click()"><a href="{% url 'deletetodo' todo.id %}">Delete</a></button>
+        </form>
+    </div>
+</div>
+{% if todo.completed is None %}
+    <form style='display: none;' method="POST" action="{% url 'completetodo' todo.id %}">
+        {% csrf_token %}
+        <button id="complete" type="submit">Complete</button>
+    </form>
+{% endif %}
+<form style='display: none;' method="POST" action="{% url 'deletetodo' todo.id %}">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
+    <button id="delete" type="submit">Delete</button>
 </form>
-
-<form method="POST" action="{url 'completetodo' todo.id %}">
-    {% csrf_token %}
-    <button type="submit">Complete</button>
-</form>
-
-<form method="POST" action="{url 'deletetodo' todo.id %}">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-</form>
-
 {% endblock %}

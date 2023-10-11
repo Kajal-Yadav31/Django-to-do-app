@@ -1,12 +1,35 @@
-{% extends 'ToDoApp/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    logout
+{% endblock %}
+
+
 
 {% block content %}
-<h1> YOU HAVE BEEN LOGOUT ,DO YOU WANT TO LOGIN AGAIN! </h1>
-<br>
-<div class="mt-4">
-    <div class="d-flex justify-content-center links">
+{% comment %} <div class="container">
+   <div> 
+        <h1> YOU HAVE BEEN LOGOUT ,DO YOU WANT TO LOGIN AGAIN! </h1>
+   </div>
+    <br>
+    <div class="mt-4">
+        <div class="d-flex justify-content-center links">
         <a href="{% url 'loginuser' %}" class="ml-2">Login</a>
+        </div>
     </div>
-</div>
+</div> {% endcomment %}
+<div class="container" style="background-color: #7abecc; padding: 2rem; width:60%;  height:90% ; ">
+    
+    <div class="content-section"; "margin-top: 4rem; ">   
+        <h1 style="font-weight:900; margin-bottom : 3rem;">You have been logged out!</h1>
+        <div class="border-top pt-3">
+                <button class="btn btn-info" type="submit">
+                <a class="ml-2 " href="{% url 'loginuser' %}" style="color:#00203FFF;">Log In Again</a>
+
+            </button>
+            <a href="{% url "home" %}" class="btn btn float-end " style="background-color:navy;"> Back </a>
+        </div>
+    <div>
 
 {% endblock %}

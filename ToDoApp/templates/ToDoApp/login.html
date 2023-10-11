@@ -1,7 +1,12 @@
-{% extends 'ToDoApp/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    login
+{% endblock %}
+
 
 {% block content %}
-
 <!DOCTYPE html>
 <html>
     
@@ -88,8 +93,17 @@
 
 					<h3 id="form-title">LOGIN</h3>
 				</div>
+
+				<div class="row justify-content-center mt-5">
+					<div class="col-md-5">
+						{% if error %}
+							<div class="alert alert-danger" role="alert">
+								{{ error }}
+							</div>
+						{% endif %}
+
 				<div class="d-flex justify-content-center form_container">
-					<form method="POST" action="">
+					<form method="POST">
                         {% csrf_token %}
 						<div class="input-group mb-3">
 							<div class="input-group-append">
@@ -110,10 +124,8 @@
 					</form>
 
 				</div>
-		
-                {% for message in messages %}
-                    <p id="messages">{{message}}</p>
-                {% endfor %}
+			</div>
+		</div>
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
 						Don't have an account? <a href="{% url 'signupuser' %}" class="ml-2">Sign Up</a>

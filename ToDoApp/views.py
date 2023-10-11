@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .forms import WorkForm, CreateUserForm
 from .models import Work
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import  AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
@@ -14,7 +14,6 @@ def home(request):
     return render(request,'ToDoApp/home.html')
 
 def signupuser(request):
-    #localhost:8000/SignUp/
     if request.method == 'GET':
         return render(request,'ToDoApp/signup.html', {'form' : CreateUserForm()})
     
@@ -23,16 +22,16 @@ def signupuser(request):
             try:
                 user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                 user.save()
-                messages.success(request, 'Your Account is been created ')
-                login(request, user)
-                return redirect('loginuser')
+                username = user.cleaned_data.get('username')
+                messages.success(request, f'Welcome , { username } Your Account is been created!')
+                return redirect('login')
             except IntegrityError:
                 return render(request, 'ToDoApp/signup.html', {'form':CreateUserForm(), 'error': 'That username has already been taken. Please choose a new username'})
             
         else:
             return render(request, 'ToDoApp/signup.html', {'form':CreateUserForm(), 'error': 'Passwords did not match'})
         
-       
+@login_required       
 def loginuser(request):
     if request.method== 'GET':
         return render(request, 'ToDoApp/login.html',{'form':AuthenticationForm()})
@@ -42,15 +41,7 @@ def loginuser(request):
             return render(request, 'ToDoApp/login.html', {'form':AuthenticationForm(), 'error':'Username and password did not match'})
         else:
             login(request, user)
-            return redirect('currentuser')
-
-
-@login_required        
-def logoutuser(request):
-    if request.method == "POST":
-        logout(request)
-        return render(request,'ToDoApp/logout.html')
-        # return redirect('logoutuser')
+            return redirect('home')
         
 
 @login_required 
@@ -82,13 +73,13 @@ def completedtodo(request):
 
 @login_required 
 def viewtodo(request, todo_pk):
-    todo = get_object_or_404(Work, pk=todo_pk)
+    todo = get_object_or_404(Work, pk=todo_pk, user=request.user)
     if request.method == 'GET':
-        form = Work(instance=todo)
+        form = WorkForm(instance=todo)
         return render(request, 'ToDoApp/viewtodo.html', {'todo':todo, 'form':form})
     else:
         try:
-            form = WorkForm(request.POST, instance=todo, user=request.user)
+            form = WorkForm(request.POST, instance=todo)
             form.save()
             return redirect('currentuser')
         except ValueError:
