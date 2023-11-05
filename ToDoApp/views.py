@@ -22,9 +22,10 @@ def signupuser(request):
             try:
                 user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                 user.save()
-                username = user.cleaned_data.get('username')
-                messages.success(request, f'Welcome , { username } Your Account is been created!')
-                return redirect('login')
+                # username = user.cleaned_data.get('username')
+                # messages.success(request, f'Welcome , { username } Your Account is been created!')
+                login(request, user)
+                return redirect('loginuser')
             except IntegrityError:
                 return render(request, 'ToDoApp/signup.html', {'form':CreateUserForm(), 'error': 'That username has already been taken. Please choose a new username'})
             
