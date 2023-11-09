@@ -1,6 +1,6 @@
-{% extends 'ToDoApp/base.html' %}
+{% extends "base.html" %}
 
-{% block content %}
+{% comment %} {% block content %}
 <h1> Current Todos </h1>
 
 <ul>
@@ -12,5 +12,39 @@
     </li>
     {% endfor %}
 </ul>
+
+{% endblock %} {% endcomment %}
+
+{% block content %}
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            {% if todos %}
+                 <h1 style="color:#003333; font-weight: 700; font-size:3rem;text-align: center;text-shadow:5px 5px 8px #505050;">( {{ todos.count }} ) - Current Todo{{ todos.count|pluralize }}</h1>
+            {% else %}
+                           <h1 style="color:#003333; font-weight: 700; font-size:3rem;text-align: center; text-shadow:5px 5px 8px #505050;">Current  Todos</h1>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+        {% if todos %}
+            <div class="list-group" >
+                {% for todo in todos %}
+                    <a href="{% url 'viewtodo' todo.id %}" class="list-group-item-primary
+                     list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}" style="width:70%;  padding:1rem; margin-top:6px; margin:auto;">
+                     <b>{{ todo.title }}</b>{% if todo.journal %} - {{ todo.journal }}{% endif %}
+                        {% if todo.journal %} - {{ todo.journal|truncatechars:30 }}{% endif %}</a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                <h2 style="color:#606060; font-weight:bold;">Looks like you don't have any todos! click below button create one.</h2>
+            <br>
+            <a role="button" class="btn btn" href="{% url 'createtodo' %}" style="background-color:#003333; color:white;">New Todo</a>
+            </div>
+        {% endif %}
+        </div>
+    </div>
 
 {% endblock %}

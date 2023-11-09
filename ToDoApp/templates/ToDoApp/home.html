@@ -1,10 +1,22 @@
-{% extends 'ToDoApp/base.html' %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
 
 {% block content %}
-<h1> Main Page </h1>
 
-<h2>Want to Create ToDo!</h2>
-<a href="{% url 'createtodo' %}"> Create ToDo </a>
 
+<div class="row justify-content-center mt-7 " style=" margin: auto; width: 80%; height:60">
+        <div class="col-md-7 text-center" >
+            {% comment %} rgb(1, 1, 32) {% endcomment %}
+            <h1 style="color:rgb(1, 1, 32); font-size:3rem; font-weight:bold; text-shadow:5px 5px 8px #829096;">CheckMate. Do More, Worry Less!</h1>
+            <br>
+            <p style="color:#303030; font-size:1.2rem; font-weight:bold;">Streamline your daily tasks and boost your productivity with our intuitive todo list app. Stay in control of your schedule, enhance productivity, and achieve your goals with ease. Organize, prioritize, and stay on top of your responsibilities effortlessly, so you can focus on what truly matters.</p>
+            <a role="button" class="btn btn btn-lg" style="background-color:rgb(1, 1, 32); font-size:1.5rem; margin-top:2rem;" href="{% url 'currentuser' %}">Start</a>
+        </div>
+    </div>
 
 {% endblock %}

@@ -1,6 +1,6 @@
-{% extends 'ToDoApp/base.html' %}
+{% extends "base.html" %}
 
-{% block content %}
+{% comment %} {% block content %}
 <h1> Completed </h1>
 
 <ul>
@@ -14,4 +14,26 @@
     {% endfor %}
 </ul>
 
+{% endblock %} {% endcomment %}
+
+{% block content %}
+<div style="background-color:skyblue; margin-left: auto;
+margin-right: auto; width:50%; height:80%; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10" style="margin-top:2rem; text-align:center; ">
+            <h1 style="color:#202020; font-weight: 700; font-size:2.4rem;text-align: center; text-shadow:5px 5px 8px #606060;">Completed Todos</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10" >
+            <div class="list-group-text-warning" style="margin-bottom:2rem;">
+                {% for todo in todos %}
+                    <a href="{% url 'viewtodo' todo.id %}" class="list-group-item text-danger list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}"><b>{{ todo.title }}</b> - Completed on ({{ todo.completed|date:'M j Y H:i' }})
+                    <br>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

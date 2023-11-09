@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(1, 1, 32);
+    z-index: 1;
+}
+
+.navbar .navbar-nav .nav-item a {
+    padding: 18px;
+    font-size: 1.25rem;
+
+}
+
+.navbar .navbar-nav .nav-but {
+    padding: 9px;
+}
+
+.backgroundi {
+    /* background-image: url("./image/light.jpg"); */
+    background-color: #A8D5BAFF;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
+
+a:link {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:active {
+    color: #fff;
+    text-decoration: none;
+}
