@@ -4,12 +4,14 @@ from django.contrib.auth.models import User
 from django import forms
 from .models import Work
 
+
 class WorkForm(forms.ModelForm):
     class Meta:
         model = Work
-        fields = ['title', 'journal','important',]
+        fields = ['title', 'journal', 'important',]
+
 
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'email','password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']

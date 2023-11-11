@@ -1,10 +1,10 @@
 from django.db import models
-from accounts.models import Account
+from django.contrib.auth.models import User
 # Create your models here.
 
 
 class Work(models.Model):
-    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     journal = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)

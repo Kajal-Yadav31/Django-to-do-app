@@ -1,4 +1,4 @@
-{% comment %} {% extends 'ToDoApp/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
@@ -24,7 +24,7 @@
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74cfbf;
+			background: #6666FF;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -47,9 +47,11 @@
 		}
 
 		.login_btn {
-			width: 100%;
-			background: #33ccff !important;
+			width: 60%;
+			margin-top:12px;
+			background: #FF9999 !important;
 			color: white !important;
+			font-weight:bold;
 		}
 		.login_btn:focus {
 			box-shadow: none !important;
@@ -70,24 +72,38 @@
 			outline: 0px !important;
 		}
 
-		#messages{
+		{% comment %} #messages{
+			width:100%
 			background-color: grey;
 			color: #fff;
 			padding: 10px;
 			margin-top: 10px;
-		}
+		} {% endcomment %}
 	</style>
 
 </head>
 <body>
-	<div class="container h-100">
+	<div class="container h-100" >
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
-
-
-					<h3 id="form-title">LOGIN</h3>
+					<h3 id="form-title" style="margin-bottom:1rem;">LOGIN</h3>
 				</div>
+				
+					{% comment %} {% for message in messages %}
+                    <p id="messages">{{message}}</p>
+                	{% endfor %} {% endcomment %}
+					{% if messages %}
+					{% for message in messages %}
+					<div id="message" class="container">
+					<div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">
+						<button type="button" class="close" date-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+							{% if message.level == DEFAULT_LEVELS.ERROR %}Error: {% endif %}
+							{{ message }}
+					</div>
+					</div>
+					{% endfor %}
+				{% endif %}
 				<div class="d-flex justify-content-center form_container">
 					<form method="POST" action="">
                         {% csrf_token %}
@@ -111,18 +127,30 @@
 
 				</div>
 		
-                {% for message in messages %}
-                    <p id="messages">{{message}}</p>
-                {% endfor %}
+             
 				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="{% url 'signupuser' %}" class="ml-2">Sign Up</a>
+					<div class="d-flex justify-content-center links" style="margin-bottom:1.5rem; margin-top:9px;">
+						Don't have an account? <a href="{% url 'signupuser' %}" class="ml-2" >Sign Up</a>
 					</div>
 			
 				</div>
 			</div>
 		</div>
 	</div>
+	<script>
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Username..';
+		form_fields[2].placeholder='Enter password...';
+
+		for (var field in form_fields){	
+			form_fields[field].className += ' form-control'
+		}
+
+		setTimeout(function () {
+			$('#message').fadeOut('slow')
+		}, 4000)
+		
+	</script>
 </body>
 
 {% endblock %}
@@ -133,15 +161,5 @@
 
 
 
-{% comment %} 
-<h1>Log In</h1>
 
-<h2>{{ error }}</h2>
-
-<form method="POST">
-    {% csrf_token %}
-       {{ form.as_p }}
-    
-       <button type="submit">Log In</button>
-</form> {% endcomment %}
 

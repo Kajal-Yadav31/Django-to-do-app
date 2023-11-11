@@ -21,6 +21,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          {% if user.is_authenticated %}
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active "aria-current="page" href="{% url "createtodo" %}">Create</a>
@@ -33,16 +34,27 @@
               </li>
              
           </ul>
+          {% endif %}
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
+            <div style="margin-right:1rem; margin-top:10px;">
+              <small class="title " style="color:white; ">Welcome <b style="margin-left:9px;">{{user.username}}! </b> </small>
+            </div>
+    
               <li class="nav-but">
-                <a class="btn btn-outline-light" href="#">Logout</a>
+                <a class="btn btn-outline-light" href="{% url 'logoutuser' %}">Logout</a>
               </li>
-            <li class="nav-but">
-              <a class="btn btn-outline-light" href="#">Login</a>
+            {% else %} 
+            <div style="margin-right:1rem; margin-top:10px;">
+              <small class="title " style="color:white; font-weight:bold;">Welcome guest!</small>
+            </div>
+              <li class="nav-but">
+              <a class="btn btn-outline-light" href="{% url 'signupuser' %}">SignUp</a>
             </li>
             <li class="nav-but">
-              <a class="btn btn-outline-light" href="#">SignUp</a>
+              <a class="btn btn-outline-light" href="{% url 'loginuser' %}">Login</a>
             </li>
+            {% endif %}
           </ul>
         </div>
       </div>

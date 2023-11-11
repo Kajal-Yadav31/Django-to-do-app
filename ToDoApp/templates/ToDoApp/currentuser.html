@@ -17,12 +17,15 @@
 
 {% block content %}
 
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-5">
+    <div class="row justify-content-center mt-5" style="background-color:white;">
+        <div class="col-md-5"   >
+
             {% if todos %}
-                 <h1 style="color:#003333; font-weight: 700; font-size:3rem;text-align: center;text-shadow:5px 5px 8px #505050;">( {{ todos.count }} ) - Current Todo{{ todos.count|pluralize }}</h1>
+                 <h1 style="color:#333300; font-weight: 700; font-size:3rem;text-align: center;text-shadow:5px 5px 8px #505050;
+                 background-color:white; 
+                 ">( {{ todos.count }} ) - Current Todo{{ todos.count|pluralize }}</h1>
             {% else %}
-                           <h1 style="color:#003333; font-weight: 700; font-size:3rem;text-align: center; text-shadow:5px 5px 8px #505050;">Current  Todos</h1>
+                   <h1 style="color:#003333; font-weight: 700; font-size:3rem;text-align: center; text-shadow:5px 5px 8px #505050;background-color:white; ">Current  Todos</h1>
             {% endif %}
         </div>
     </div>
@@ -39,7 +42,7 @@
             </div>
         {% else %}
             <div class="text-center">
-                <h2 style="color:#606060; font-weight:bold;">Looks like you don't have any todos! click below button create one.</h2>
+                <h2 style="color:#404040; font-weight:bold;">Looks like you don't have any todos! click below button create one.</h2>
             <br>
             <a role="button" class="btn btn" href="{% url 'createtodo' %}" style="background-color:#003333; color:white;">New Todo</a>
             </div>
