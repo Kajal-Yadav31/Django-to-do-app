@@ -36,8 +36,7 @@
                 {% for todo in todos %}
                     <a href="{% url 'viewtodo' todo.id %}" class="list-group-item-primary
                      list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}" style="width:70%;  padding:1rem; margin-top:6px; margin:auto;">
-                     <b>{{ todo.title }}</b>{% if todo.journal %} - {{ todo.journal }}{% endif %}
-                        {% if todo.journal %} - {{ todo.journal|truncatechars:30 }}{% endif %}</a>
+                     <b>{{ todo.title }}</b>{% if todo.journal %}  - ({{ todo.journal|truncatechars:30 }}){% endif %}</a>
                 {% endfor %}
             </div>
         {% else %}
