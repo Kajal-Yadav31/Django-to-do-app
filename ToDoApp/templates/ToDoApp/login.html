@@ -120,11 +120,11 @@
 							</div>
 								{{ form.password }}
 						</div>
-						<div class="text-right">
+						{% comment %} <div class="text-right">
 							<small class="text-muted " style=" width:100%; font-weight:bold;  ">
-								<a href="{% url 'forgotPassword' %}">Forgot Password?</a>
+								<a href="{% url 'reset_password' %}">Forgot Password?</a>
 							</small>
-						</div>
+						</div> {% endcomment %}
 
 							<div class="d-flex justify-content-center mt-4 login_container">
 				 				<input class="btn login_btn" type="submit" value="Login">

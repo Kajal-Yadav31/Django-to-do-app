@@ -7,36 +7,9 @@
 
 
 
-{% comment %} {% block content %}
-<h1> View To DO</h1>
-
-{{ todo.title }}
-
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
-
-
-
-<form method="POST" action="{% url 'completetodo' todo.id %}">
-    {% csrf_token %}
-    <button type="submit">Complete</button>
-</form>
-
-<form method="POST" action="{% url 'deletetodo' todo.id %}">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-</form>
-
-{% endblock %} {% endcomment %}
-
-
-
 
 {% block content %}
-<div style="background-color:#FFFF99; margin-left: auto;
+<div style="background-color:#FFFACD; margin-left: auto;
 margin-right: auto; width:50%; height:60%; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
     <div class="row justify-content-center mt-5">
         <div class="col-md-5" style="margin-top:2rem; text-align:center;">

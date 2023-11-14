@@ -18,23 +18,4 @@ urlpatterns = [
     path('LogOut/', user_views.logoutuser,
          name="logoutuser"),
 
-    # reset password.
-    path('forgotPassword/', user_views.forgotPassword, name='forgotPassword'),
-    path('reset_password_validate/<uidb64>/<token>/',
-         user_views.reset_password_validate, name='reset_password_validate'),
-    path('resetPassword/', user_views.resetPassword, name='resetPassword'),
-
-
-
-    # path('password-reset/', auth_views.PasswordResetView.as_view(
-    #     template_name='ToDoApp/password_reset.html'), name='password_reset'),
-
-    # path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(
-    #     template_name='ToDoApp/password_reset_done.html'), name='password_reset_done'),
-
-    # path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
-    #     template_name='ToDoApp/password_reset_confirm.html'), name='password_reset_confirm'),
-
-    # path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(
-    #     template_name='ToDoApp/password_reset_complete.html'), name='password_reset_complete'),
 ]
