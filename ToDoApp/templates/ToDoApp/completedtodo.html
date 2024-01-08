@@ -13,7 +13,7 @@ margin-right: auto; width:50%; height:80%; box-shadow: rgba(50, 50, 93, 0.25) 0p
         <div class="col-md-10" >
             <div class="list-group-text-warning" style="margin-bottom:2rem;">
                 {% for todo in todos %}
-                    <a href="{% url 'viewtodo' todo.id %}" class="list-group-item text-danger list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}"><b>{{ todo.title }}</b> - Completed on ({{ todo.completed|date:'M j Y H:i' }})
+                    <a href="{% url 'viewtodo' todo.id %}" class="list-group-item text-danger list-group-item-action{% if todo.important %} list-group-item-danger{% endif %}"><b>{{ todo.title }}</b> - Completed on ({{ todo.completed|date:'M/j/Y H:i' }})
                     <br>
                     </a>
                 {% endfor %}

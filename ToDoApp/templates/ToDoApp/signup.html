@@ -79,14 +79,18 @@
 				<div class="d-flex justify-content-center" style="margin-top:1rem; margin-bottom:2rem; ">
 					<h3 id="form-title">REGISTER ACCOUNT</h3>
 				</div>
-				{% if error %}
-                <div class="alert alert-danger" role="alert">
-                    {{ error }}
-                </div>
-            {% endif %}
-
+				<div>
+					{% if error %}
+					<div >
+					<div class="alert alert-danger" role="alert" >
+						{{ error }}
+					</div>
+				</div>
 				<div class="d-flex justify-content-center form_container">
-
+		
+				
+				{% endif %}
+				
 					<form method="POST" action="">
                         {% csrf_token %}
 						<div class="input-group mb-3">
@@ -119,13 +123,15 @@
 				   		</div>
 					</form>
 				</div>
+		
                 
 				<div class="mt-4">
-					<div class="d-flex justify-content-center links" style="margin-bottom:2rem;">
+					<div class="d-flex justify-content-center links" style="margin-bottom:1rem;">
 						Already have an account? <a href="{% url 'loginuser' %}" class="ml-2">Login</a>
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 	<script>
