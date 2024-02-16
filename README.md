@@ -4,6 +4,10 @@
 
 Checkmate Todo List is a Django-based web application designed to provide users with a secure and personalized task management experience. With user authentication at its core, the application allows users to create, edit, delete, and mark tasks as complete, all within a private space. The Completed Tasks page showcases users' accomplished activities for a comprehensive overview.
 
+## demo
+
+https://github.com/Kajal-Yadav31/Django-to-do-app/assets/129850619/83ca1616-d04b-48e3-86e4-affa351933a8
+
 ## Features
 
 1. **User Authentication:**
